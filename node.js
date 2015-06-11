@@ -41,17 +41,18 @@ Node.prototype.edge = function (label, props) {
   return r;
 };
 
-Node.prototype.edgeLoop = function (label, props) {
-  return this
-    .edge(label, props)
-    .node(this.nameLabel, this.props);
-};
+// TODO:
+// Node.prototype.edgeLoop = function (label, props) {
+//   return this
+//     .edge(label, props)
+//     .node(this);
+// };
 
-Node.prototype.arcLoop = function (label, props) {
-  return this
-    .out(label, props)
-    .node(this.nameLabel, this.props);
-};
+// Node.prototype.arcLoop = function (label, props) {
+//   return this
+//     .out(label, props)
+//     .node(this);
+// };
 
 Node.prototype.toString = function () {
   var graph = this._graph;

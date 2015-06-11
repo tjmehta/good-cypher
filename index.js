@@ -12,11 +12,11 @@ module.exports = function Connection(url) {
     }
     return new CypherStream(url, statements, { commit: true });
   };
-  factory.transaction = function (options) {
-    return new GoodTransactionStream(url, options);
+  factory.transaction = function (opts) {
+    return new TransactionStream(url, opts);
   };
-  factory.node = function () {
-    return new GoodNode(url, options);
+  factory.node = function (opts) {
+    return new GoodNode(url, opts);
   };
 
   return factory;

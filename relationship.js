@@ -44,9 +44,7 @@ function Relationship (nameLabel, props, direction) {
 
 Relationship.prototype.node = function (nameLabel, props) {
   var Node = require('./node.js'); // circular dep
-  var n = (nameLabel instanceof Node) ?
-    nameLabel : // node
-    new Node(nameLabel, props);
+  var n = new Node(nameLabel, props);
   n._graph = this._graph;
   this._graph.push(n);
   return n;

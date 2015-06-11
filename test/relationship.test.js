@@ -77,7 +77,7 @@ describe('Relationship -', function () {
     descWithDirection();
 
     function descWithDirection (msg) {
-      mxg = msg || '';
+      msg = msg || '';
 
       describe('w/ direction >', function () {
         beforeEach(function (done) {

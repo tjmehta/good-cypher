@@ -8,6 +8,7 @@ var beforeEach = lab.beforeEach;
 var expect = Code.expect;
 
 var Node = require('../node.js');
+var Relationship = require('../relationship.js');
 
 describe('Node -', function () {
   var ctx;
@@ -58,8 +59,61 @@ describe('Node -', function () {
             shouldCreateANode);
         });
       });
+
+      describe('w/ props arg', function () {
+        beforeEach(function (done) {
+          ctx.props = {};
+          ctx.args.push(ctx.props);
+          done();
+        });
+
+        it('should create a node w/ name, label, and props',
+          shouldCreateANode);
+      });
     });
   });
+
+
+  describe('instance methods', function() {
+    beforeEach(function (done) {
+      ctx.n = createNode();
+      done();
+    });
+
+    describe('in', function () {
+
+      it('should create a incoming relationship', function (done) {
+        var r = ctx.n.in();
+        expect(r).to.be.an.instanceof(Relationship);
+        expect(r.direction).to.equal('<');
+        done();
+      });
+    });
+
+
+    describe('out', function () {
+
+      it('should create a outgoing relationship', function (done) {
+        var r = ctx.n.out();
+        expect(r).to.be.an.instanceof(Relationship);
+        expect(r.direction).to.equal('>');
+        done();
+      });
+    });
+
+
+    describe('edge', function () {
+
+      it('should create a non-directional relationship', function (done) {
+        var r = ctx.n.edge();
+        expect(r).to.be.an.instanceof(Relationship);
+        expect(r.direction).to.not.exist();
+        done();
+      });
+    });
+  });
+
+
 
   function shouldCreateANode (done) {
     var r = createNode.apply(null, ctx.args);
